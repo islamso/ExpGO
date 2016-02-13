@@ -1,0 +1,80 @@
+body {
+	background: url(../img/Black-and-White-City-at-Night.png) no-repeat center ;
+	background-color:#000;
+}
+
+div.fieldset {
+	border: solid #ff9900 thick;
+	width: 600px;
+	color:#00cc99;
+	background-color: black;
+	position:relative;
+	margin-top:2%;
+	margin-left: 28%;
+
+}
+
+fieldset {
+	border: none;
+	margin: 0 0 0 -10px;
+}
+
+h1 {
+	font-family: Verdana;
+	color:#00cc99;
+	font-size: 40px;
+	font-shadow: #000 0px 3px;
+	font-weight:bold;
+	width:100%;	
+	text-align: center;
+	top:50%;
+	left: 50%;
+	margin-top:65px;
+}
+
+label {
+	font-family: Verdana;
+	font-size: 14px;
+	text-align: right;
+	width: 170px;
+	float:left;
+	color:#00cc99;
+	
+}
+
+fieldset p {
+	clear:both;
+	padding:5px;
+}
+
+label span, .required {
+	color:#ff9900;
+}
+
+input {
+
+	width: 250px;
+	font-family: Verdana;
+	color:black;
+	font-weight: bold;
+	border-color: #ff9900;
+}
+
+#Submitbutton {
+	width:75px; 
+	background-color:#ff9900; 
+	color:black; 
+	margin: 0 0 10px 250px;
+	border: outset #ff9900 thick;
+
+}
+
+#drop-down {
+	font-family: Verdana;
+	font-size: 15px;
+	color:black;
+	width:255px;	
+	text-align: center;
+	top:50%;
+	left: 50%;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Student Sign Up</title>
+		<link href="css/Signup.css" rel="stylesheet">
+	</head>
+	<body>
+		
+		<form>
+			<h1>Student Sign Up </h1>
+			<div class = "fieldset">
+			<fieldset>
+				
+				<p><label class = "field" for="fName"><span>*</span>First Name:</label>
+					<input type="Text" name="fName" /></p>
+				<p><label class = "field" for="lName"><span>*</span>Last Name:</label>
+					<input type="Text" name="lName" /></p>
+				<p><label class = "field" for="email"><span>*</span>Email:</label>
+					<input type="email" name="email" /></p>
+				<p><label class = "field" for="Password"><span>*</span>Password:</label>
+					<input type="Password" name="pass" /></p>
+				<p><label class = "field" for="Confirm Password"><span>*</span>Confirm Password:</label>
+					<input type="Password" name="confirmPass" /></p>
+				<p><label><span>*</span>Select College:</label>
+					<select id="drop-down"name="college">
+						<option value="TCD">Trinity College Dublin</option>
+						<option value="UCD">University College Dublin</option>
+						<option value="DCU">Dublin City University</option>
+						<option value="UCC">University College Cork</option>
+						<option value="NUIG">NUI Galway</option>
+						<option value="NUIM">NUI Maynooth</option>
+					</select></p>
+
+				<p><label><span>*</span>Select Year:</label>
+					<select id="drop-down"name="year">
+						<option value="JF">Junior Freshman</option>
+						<option value="SF">Senior Freshman</option>
+						<option value="JS">Junior Sophmore</option>
+						<option value="SS">Senior Sophmore</option>
+						<option value="Postgrad">Post graduate</option>
+					</select></p>
+				<p><label class = "field" for="course"><span>*</span>Course:</label>
+					<input type="Text" name="course" /></p>
+			</fieldset>
+			<input id="Submitbutton" type="Submit" name="Submit" value="Submit">
+			</div>
+		</form>
+
+	</body>
+</html>
