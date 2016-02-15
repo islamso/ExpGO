@@ -1,17 +1,16 @@
 var store_business_info = function() {
-	const fs = require('fs');
 	var data = [];
 	var errorMsg = "";
-	data.push(document.forms["businessForm"]["cName"].value); //0
-	data.push(document.forms["businessForm"]["email"].value); //1
-	data.push(document.forms["businessForm"]["phone"].value); //2
-	data.push(document.forms["businessForm"]["admin"].value); //3
-	data.push(document.forms["businessForm"]["pass"].value); //4
-	data.push(document.forms["businessForm"]["confirmPass"].value); //5
-	data.push(document.forms["businessForm"]["address"].value); //6
-	data.push(document.forms["businessForm"]["address2"].value); //7
-	data.push(document.forms["businessForm"]["industry"].value); //8
-	data.push(document.forms["businessForm"]["bio"].value); //9
+	data.push(document.forms["businessForm"]["cName"].value); 		// 0
+	data.push(document.forms["businessForm"]["email"].value); 		// 1
+	data.push(document.forms["businessForm"]["phone"].value); 		// 2
+	data.push(document.forms["businessForm"]["admin"].value); 		// 3
+	data.push(document.forms["businessForm"]["pass"].value); 		// 4
+	data.push(document.forms["businessForm"]["confirmPass"].value); // 5
+	data.push(document.forms["businessForm"]["address"].value); 	// 6
+	data.push(document.forms["businessForm"]["address2"].value); 	// 7
+	data.push(document.forms["businessForm"]["industry"].value); 	// 8
+	data.push(document.forms["businessForm"]["bio"].value); 		// 9
 	console.log(data);
 	if (data[4] !== data[5] && data[4] !== "" && data[5] !== "") {
 		errorMsg += "Passwords enter do not match\n"
@@ -50,6 +49,13 @@ var store_business_info = function() {
 		console.log(errorMsg);
 		window.alert(errorMsg);
 	} else {
-
+		var xhttp = new XMLHttpRequest();
+		  xhttp.onreadystatechange = function() {
+		    if (xhttp.readyState == 4 && xhttp.status == 200) {
+		      console.log(xhttp);
+		    }
+		  };
+		  xhttp.open("POST", "test.json", true);
+		  xhttp.send("Poop");
 	}
 }
