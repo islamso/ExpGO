@@ -50,12 +50,12 @@ var store_business_info = function() {
 		window.alert(errorMsg);
 	} else {
 		var xhttp = new XMLHttpRequest();
-		  xhttp.onreadystatechange = function() {
+		xhttp.onreadystatechange = function() {
 		    if (xhttp.readyState == 4 && xhttp.status == 200) {
 		      console.log(xhttp);
 		    }
-		  };
-		  xhttp.open("POST", "test.json", true);
-		  xhttp.send("Poop");
+		};
+		xhttp.open("POST", "test.json", true);
+		xhttp.send("Poop");
 	}
 }
