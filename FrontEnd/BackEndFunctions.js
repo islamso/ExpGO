@@ -45,17 +45,17 @@ var store_business_info = function() {
 			errorMsg += "field.\n"
 		}
 	}
+	if (data[4].length <= 5) {
+		errorMsg += "Password must be at least 6 characters long"
+	}
 	if (errorMsg !== "") {
-		console.log(errorMsg);
 		window.alert(errorMsg);
-	} else {
-		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function() {
-		    if (xhttp.readyState == 4 && xhttp.status == 200) {
-		      console.log(xhttp);
-		    }
-		};
-		xhttp.open("POST", "test.json", true);
-		xhttp.send("Poop");
+	} 
+}
+
+var checkValidPass = function(val) {
+	if (val.length <= 5) {
+		var x = document.getElementById("passField");
+		console.log("Password must be at least 6 characters long");
 	}
 }
