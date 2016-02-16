@@ -3,10 +3,11 @@
 	<head>
 		<title>Business Sign Up</title>
 		<link href="css/Signup.css" rel="stylesheet">
+		<script src="BackEndFunctions.js"></script>
 	</head>
 	<body>
 		
-		<form>
+		<form name="businessForm" onsubmit="store_business_info()">
 			<h1>Business Sign Up </h1>
 			<div class = "fieldset">
 			<fieldset>
@@ -19,18 +20,18 @@
 					<input type="tel" name="phone" /></p>
 				<p><label class = "field" for="admin"><span>*</span>Admin Username:</label>
 					<input type="Text" name="admin" /></p>
-				<p><label class = "field" for="Password"><span>*</span>Password:</label>
+				<p><label class = "field" id="passField" for="Password" onchange="checkValidPass(this.value)"><span>*</span>Password:</label>
 					<input type="Password" name="pass" /></p>
 				<p><label class = "field" for="Confirm Password"><span>*</span>Confirm Password:</label>
 					<input type="Password" name="confirmPass" /></p>
 				<p><label class = "field" for="address"><span>*</span>Address:</label>
 					<input type="Text" name="address" /></p>
-				<p><label class = "field" for="address">Address:</label>
-					<input type="Text" name="address" /></p>
+				<p><label class = "field" for="address2">Address:</label>
+					<input type="Text" name="address2" /></p>
 				<p><label class = "field" for="industry">Industry:</label>
 					<input type="Text" name="industry" /></p>
 				<p><label class = "field" for="bio">Bio:</label>
-					<input style="width:350px; height:75px"type="Text" name="bio" /></p>
+					<input style="width:350px; height:75px" type="Text" name="bio" /></p>
 			</fieldset>
 			<input id="Submitbutton" type="Submit" name="Submit" value="Submit">
 			</div>
