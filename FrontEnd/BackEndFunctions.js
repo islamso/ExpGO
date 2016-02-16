@@ -54,6 +54,7 @@ var store_business_info = function() {
 }
 
 var checkValidPass = function(val) {
+	console.log("checkValidPass");
 	if (val.length <= 5) {
 		var x = document.getElementById("passField");
 		console.log("Password must be at least 6 characters long");
