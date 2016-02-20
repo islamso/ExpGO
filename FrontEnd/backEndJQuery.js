@@ -3,62 +3,61 @@ $(document).ready(function() {
 	var MIN_PASS_LENGTH 	= 6;
 	var INVALID_PASS_CHAR 	= " ! @ £ # $ % ^ & * ( ) { }";
 
-	document.addEventListener("keydown", KeyCheck);
-	function KeyCheck(event) {
-	   var KeyID = event.keyCode;
-	   switch(KeyID) {
-	      case 8:
-	      	$.proxy(passCheckDel, $('#passField'))();
-	      	break; 
-	      default:
-	      	break;
-	   }
-	};
+	var ERROR_MSG_1 = "Password must be at least 6 characters long"
+	var ERROR_MSG_2 = "Passwords cannot contain" + INVALID_PASS_CHAR;
+
+	var keyPressed;
+
+	var eventClickedId;
+
+	document.addEventListener("keydown", keyCheck);
+	function keyCheck(event) {
+		if (event.keyCode === 8) {
+			keyPressed = 8;
+			console.log(this);
+			$.proxy(passFieldCheck, this)();
+		}
+	}
+
+	$(document).click(function(event){
+		if ($(event.target).attr('id')){
+			eventClickedId = $(event.target).attr('id');
+		} else {
+			eventClickedId = "null";
+		}
+	})
 
 	$("#passField").keypress(function(){
-		console.log("test");
-		$.proxy(passCheck, $('#passField'))();
+		keyPressed = event.keyCode;
+		console.log(this);
+		$.proxy(passFieldCheck, this)();
 	});
-
-	function passCheck() {
-		var passVal = $(this).val() + String.fromCharCode(event.keyCode);
+	
+	function passFieldCheck() {
+		console.log(keyPressed);
+		var passVal;
+		if (keyPressed === 8) {
+			passVal = $("#" + eventClickedId).val().substring(0, $("#" + eventClickedId).val().length - 1);
+		} else {
+			passVal = $(this).val() + String.fromCharCode(event.keyCode);
+		}
 		var passLength = passVal.length;
-		console.log(passVal);
-		console.log(passLength);
 		$("#errorSpan").remove();
 		for (var i = 0; i < INVALID_PASS_CHAR.length; i++) {
 			if (passVal.indexOf(INVALID_PASS_CHAR[i * 2]) > -1 ) {
-				$(this).after("<div id=\"errorSpan\"> Password cannot contain " + INVALID_PASS_CHAR + "</div>");
+				$('#passField').after("<div id=\"errorSpan\">" + ERROR_MSG_2 + "</div>");
 				return;
 			}
 		}
 		if (passLength <= 5) {
-			$(this).css("border-color", "#FF0000");
-			$(this).css("border-style", "solid");
-			$(this).css("border-width", "5px");
-			$(this).after("<div id=\"errorSpan\"> Password must be at least 6 characters long </div>")
+			$('#passField').css("border-color", "#FF0000");
+			$('#passField').css("border-style", "solid");
+			$('#passField').css("border-width", "5px");
+			$('#passField').after("<div id=\"errorSpan\">" + ERROR_MSG_1 + "</div>")
 		} else {
-			$(this).css("border-color", "#00FF00");
-			$(this).css("border-style", "#FF0000");
-			$(this).css("border-width", "5px");
+			$('#passField').css("border-color", "#00FF00");
+			$('#passField').css("border-style", "#FF0000");
+			$('#passField').css("border-width", "5px");
 		}
-	};
-
-	function passCheckDel() {
-		var passLength = $(this).val().length - 1;
-		var passVal = $(this).val().substring(0, passLength);
-		console.log(passVal);
-		console.log(passLength);
-		if (passLength <= 5) {
-			$("#errorSpan").remove();
-			$(this).css("border-color", "#FF0000");
-			$(this).css("border-style", "solid");
-			$(this).css("border-width", "5px");
-		} else {
-			$("#errorSpan").remove();
-			$(this).css("border-color", "#00FF00");
-			$(this).css("border-style", "#FF0000");
-			$(this).css("border-width", "5px");
-		}
-	};
+	}
 });
