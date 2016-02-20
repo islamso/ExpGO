@@ -1,7 +1,7 @@
 <?php
-$dbhost = 'mysql1.000webhost.com';
-      $dbuser = 'a9689672_Webmast';
-      $dbpass = 'x8p5s4d19r';
+$dbhost = '';
+      $dbuser = '';
+      $dbpass = '';
       $conn = mysql_connect($dbhost, $dbuser, $dbpass);
       if(! $conn )
       {
