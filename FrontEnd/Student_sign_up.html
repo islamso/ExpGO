@@ -6,23 +6,23 @@
 	</head>
 	<body>
 		
-		<form>
+		<form method='post' action='signup_stu.php'>
 			<h1>Student Sign Up </h1>
 			<div class = "fieldset">
 			<fieldset>
 				
 				<p><label class = "field" for="fName"><span>*</span>First Name:</label>
-					<input type="Text" name="fName" /></p>
+					<input type="Text" name="fName" id="fname"/></p>
 				<p><label class = "field" for="lName"><span>*</span>Last Name:</label>
-					<input type="Text" name="lName" /></p>
-				<p><label class = "field" for="email"><span>*</span>Email:</label>
-					<input type="email" name="email" /></p>
+					<input type="Text" name="lName" id="lName"/></p>
+				<p><label class = "field" for="email><span>*</span>Email:</label>
+					<input type="email" name="email" id="email" /></p>
 				<p><label class = "field" for="Password"><span>*</span>Password:</label>
-					<input type="Password" name="pass" /></p>
+					<input type="Password" name="pass" id="pass"/></p>
 				<p><label class = "field" for="Confirm Password"><span>*</span>Confirm Password:</label>
 					<input type="Password" name="confirmPass" /></p>
 				<p><label><span>*</span>Select College:</label>
-					<select id="drop-down"name="college">
+					<select id="drop-down"name="college" id="college">
 						<option value="TCD">Trinity College Dublin</option>
 						<option value="UCD">University College Dublin</option>
 						<option value="DCU">Dublin City University</option>
@@ -32,7 +32,7 @@
 					</select></p>
 
 				<p><label><span>*</span>Select Year:</label>
-					<select id="drop-down"name="year">
+					<select id="drop-down"name="year" id="year">
 						<option value="JF">Junior Freshman</option>
 						<option value="SF">Senior Freshman</option>
 						<option value="JS">Junior Sophmore</option>
@@ -40,7 +40,7 @@
 						<option value="Postgrad">Post graduate</option>
 					</select></p>
 				<p><label class = "field" for="course"><span>*</span>Course:</label>
-					<input type="Text" name="course" /></p>
+					<input type="Text" name="course" id="course/></p>
 			</fieldset>
 			<input id="Submitbutton" type="Submit" name="Submit" value="Submit">
 			</div>
