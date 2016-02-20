@@ -14,7 +14,6 @@ $(document).ready(function() {
 	function keyCheck(event) {
 		if (event.keyCode === 8) {
 			keyPressed = 8;
-			console.log(this);
 			$.proxy(passFieldCheck, this)();
 		}
 	}
@@ -29,7 +28,6 @@ $(document).ready(function() {
 
 	$("#passField").keypress(function(){
 		keyPressed = event.keyCode;
-		console.log(this);
 		$.proxy(passFieldCheck, this)();
 	});
 	
