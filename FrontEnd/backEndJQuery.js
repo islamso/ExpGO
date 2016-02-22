@@ -14,6 +14,18 @@ $(document).ready(function() {
 
 	var eventClickedId;
 
+	console.log(this.title);
+	var currentForm;
+	if (this.title === "Business Sign Up") {
+		currentForm = document.forms["businessForm"];
+	} else if (this.title === "Student Sign Up") {
+		currentForm = document.forms["studentForm"];
+	}
+	var formFields = [];
+	for (var i = 0; i < currentForm.length; i++) {
+		formFields.push(currentForm[i]['id']);
+	}
+
 	document.addEventListener("keydown", keyCheck);
 	function keyCheck(event) {
 		if (event.keyCode === 8) {
@@ -31,8 +43,20 @@ $(document).ready(function() {
 				case "phoneField":
 					$.proxy(phoneFieldCheck, this)();
 					break;
+				case "cNameField":
+				case "adminField":
+				case "addressField":
+				case "courseField":
+					$.proxy(blankCheck, this)();
+					break;
 				default:
 					break;
+			}
+		} else if (event.keyCode === 9) {
+			if (formFields[(formFields.indexOf(eventClickedId) + 1)]){
+				eventClickedId = formFields[(formFields.indexOf(eventClickedId) + 1)];
+			} else {
+				eventClickedId = "null";
 			}
 		}
 	}
@@ -43,7 +67,6 @@ $(document).ready(function() {
 		} else {
 			eventClickedId = "null";
 		}
-		console.log(eventClickedId);
 	});
 
 	$("#passField").keypress(function() {
@@ -65,15 +88,41 @@ $(document).ready(function() {
 		keyPressed = event.keyCode;
 		$.proxy(phoneFieldCheck, this)();
 	});
+
+	$("#cNameField").keypress(function() {
+		keyPressed = event.keyCode;
+		$.proxy(blankCheck, this)();
+	});
+
+	$("#adminField").keypress(function() {
+		keyPressed = event.keyCode;
+		$.proxy(blankCheck, this)();
+	});
+
+	$("#addressField").keypress(function() {
+		keyPressed = event.keyCode;
+		$.proxy(blankCheck, this)();
+	});
+
+	$("#courseField").keypress(function() {
+		keyPressed = event.keyCode;
+		$.proxy(blankCheck, this)();
+	});
+
+	function blankCheck() {
+		$("#" + eventClickedId + "DivErr").remove();
+		var fieldVal = getValue();
+		if (fieldVal === "") {
+			$("#" + eventClickedId).after("<div id=\"" + eventClickedId + "DivErr\">" + ERROR_MSG_6 + "</div>");
+			displayErrorField();
+		} else {
+			displayValidField();
+		}
+	};
 	
 	function emailFieldCheck() {
-		var emailVal;
+		var emailVal = getValue();
 		$("#emailErrDiv").remove();
-		if (keyPressed === 8) {
-			emailVal = $("#" + eventClickedId).val().substring(0, $("#" + eventClickedId).val().length - 1);
-		} else {
-			emailVal = $("#" + eventClickedId).val() + String.fromCharCode(event.keyCode);
-		}
 		if (emailVal === "") {
 			$("#" + eventClickedId).after("<div id=\"emailErrDiv\">" + ERROR_MSG_6 + "</div>");
 			displayErrorField();
@@ -87,13 +136,8 @@ $(document).ready(function() {
 	};
 
 	function phoneFieldCheck() {
-		var phoneVal;
+		var phoneVal = getValue();
 		$("#phoneErrDiv").remove();
-		if (keyPressed === 8) {
-			phoneVal = $("#" + eventClickedId).val().substring(0, $("#" + eventClickedId).val().length - 1);
-		} else {
-			phoneVal = $("#" + eventClickedId).val() + String.fromCharCode(event.keyCode);
-		}
 		if (phoneVal === "") {
 			$("#" + eventClickedId).after("<div id=\"phoneErrDiv\">" + ERROR_MSG_6 + "</div>");
 			displayErrorField();
@@ -107,29 +151,24 @@ $(document).ready(function() {
 	}
 
 	function passFieldCheck() {
-		var passVal;
-		if (keyPressed === 8) {
-			passVal = $("#" + eventClickedId).val().substring(0, $("#" + eventClickedId).val().length - 1);
-		} else {
-			passVal = $("#" + eventClickedId).val() + String.fromCharCode(event.keyCode);
-		}
+		var passVal = getValue();
 		var passLength = passVal.length;
-		$("#errorSpan").remove();
+		$("#passErrDiv").remove();
 		if (passVal === "") {
-			$("#" + eventClickedId).after("<div id=\"errorSpan\">" + ERROR_MSG_6 + "</div>");
+			$("#" + eventClickedId).after("<div id=\"passErrDiv\">" + ERROR_MSG_6 + "</div>");
 			displayErrorField();
 			return;
 		}
 		for (var i = 0; i < INVALID_PASS_CHAR.length; i++) {
 			if (passVal.indexOf(INVALID_PASS_CHAR[i * 2]) > -1 ) {
-				$("#" + eventClickedId).after("<div id=\"errorSpan\">" + ERROR_MSG_2 + "</div>");
+				$("#" + eventClickedId).after("<div id=\"passErrDiv\">" + ERROR_MSG_2 + "</div>");
 				displayErrorField();
 				return;
 			}
 		}
 		if (passLength <= 5) {
 			displayErrorField();
-			$("#" + eventClickedId).after("<div id=\"errorSpan\">" + ERROR_MSG_1 + "</div>");
+			$("#" + eventClickedId).after("<div id=\"passErrDiv\">" + ERROR_MSG_1 + "</div>");
 		} else {
 			displayValidField();
 		}
@@ -138,12 +177,7 @@ $(document).ready(function() {
 	function confirmPassFieldCheck() {
 		$("#confErrDiv").remove();
 		var passVal = $("#passField").val();
-		var confirmPassVal;
-		if (keyPressed === 8) {
-			confirmPassVal = $("#confirmPassField").val().substring(0, $("#confirmPassField").val().length - 1);
-		} else {
-			confirmPassVal = $("#confirmPassField").val() + String.fromCharCode(event.keyCode);
-		}
+		var confirmPassVal = getValue();
 		if (confirmPassVal === "") {
 			$("#" + eventClickedId).after("<div id=\"confErrDiv\">" + ERROR_MSG_6 + "</div>");
 			displayErrorField();
@@ -167,11 +201,18 @@ $(document).ready(function() {
 		$("#" + eventClickedId).css("border-style", "#FF0000");
 		$("#" + eventClickedId).css("border-width", "5px");
 	};
+
+	function getValue() {
+		if (keyPressed === 8) {
+			return $("#" + eventClickedId).val().substring(0, $("#" + eventClickedId).val().length - 1);
+		} else {
+			return $("#" + eventClickedId).val() + String.fromCharCode(event.keyCode);
+		}
+	};
 });
 
 function store_business_info() {
 	var data = [];
-	var errorMsg = "";
 	data.push(document.forms["businessForm"]["cName"].value); 		// 0
 	data.push(document.forms["businessForm"]["email"].value); 		// 1
 	data.push(document.forms["businessForm"]["phone"].value); 		// 2
@@ -183,4 +224,17 @@ function store_business_info() {
 	data.push(document.forms["businessForm"]["industry"].value); 	// 8
 	data.push(document.forms["businessForm"]["bio"].value); 		// 9
 	console.log(data);
-}
+};
+
+function store_student_info() {
+	var data = [];
+	data.push(document.forms["studentForm"]["fName"].value); 		// 0
+	data.push(document.forms["studentForm"]["lName"].value); 		// 1
+	data.push(document.forms["studentForm"]["email"].value); 		// 2
+	data.push(document.forms["studentForm"]["pass"].value); 		// 3
+	data.push(document.forms["studentForm"]["confirmPass"].value); 	// 4
+	data.push(document.forms["studentForm"]["college"].value); 		// 5
+	data.push(document.forms["studentForm"]["year"].value); 		// 6
+	data.push(document.forms["studentForm"]["course"].value); 		// 7
+	console.log(data);
+};
