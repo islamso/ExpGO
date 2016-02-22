@@ -1,3 +1,5 @@
+var validity = false;
+
 $(document).ready(function() {
 
 	var MIN_PASS_LENGTH 	= 6;
@@ -14,16 +16,22 @@ $(document).ready(function() {
 
 	var eventClickedId;
 
-	console.log(this.title);
+	var formValid = {};
+
 	var currentForm;
 	if (this.title === "Business Sign Up") {
 		currentForm = document.forms["businessForm"];
+		formValid["address2Field"] = true;
+		formValid["industryField"] = true;
+		formValid["bioField"] = true;
 	} else if (this.title === "Student Sign Up") {
 		currentForm = document.forms["studentForm"];
 	}
 	var formFields = [];
-	for (var i = 0; i < currentForm.length; i++) {
-		formFields.push(currentForm[i]['id']);
+	for (var i = 1; i < currentForm.length - 1; i++) {
+		var idName = currentForm[i]['id'];
+		formFields.push(idName);
+		if (!formValid[idName]) formValid[idName] = false;
 	}
 
 	document.addEventListener("keydown", keyCheck);
@@ -107,6 +115,16 @@ $(document).ready(function() {
 	$("#courseField").keypress(function() {
 		keyPressed = event.keyCode;
 		$.proxy(blankCheck, this)();
+	});
+
+	$("#Submitutton").click(function() {
+		for (var i = 0; i < formFields; i++) {
+			if (!formValid[formFields[i]]) {
+				validity = false;
+				return;
+			}
+		}
+		validity = true;
 	});
 
 	function blankCheck() {
@@ -212,29 +230,35 @@ $(document).ready(function() {
 });
 
 function store_business_info() {
-	var data = [];
-	data.push(document.forms["businessForm"]["cName"].value); 		// 0
-	data.push(document.forms["businessForm"]["email"].value); 		// 1
-	data.push(document.forms["businessForm"]["phone"].value); 		// 2
-	data.push(document.forms["businessForm"]["admin"].value); 		// 3
-	data.push(document.forms["businessForm"]["pass"].value); 		// 4
-	data.push(document.forms["businessForm"]["confirmPass"].value); // 5
-	data.push(document.forms["businessForm"]["address"].value); 	// 6
-	data.push(document.forms["businessForm"]["address2"].value); 	// 7
-	data.push(document.forms["businessForm"]["industry"].value); 	// 8
-	data.push(document.forms["businessForm"]["bio"].value); 		// 9
-	console.log(data);
+	if (validity) {
+		console.log(data);
+		var data = [];
+		data.push(document.forms["businessForm"]["cName"].value); 		// 0
+		data.push(document.forms["businessForm"]["email"].value); 		// 1
+		data.push(document.forms["businessForm"]["phone"].value); 		// 2
+		data.push(document.forms["businessForm"]["admin"].value); 		// 3
+		data.push(document.forms["businessForm"]["pass"].value); 		// 4
+		data.push(document.forms["businessForm"]["confirmPass"].value); // 5
+		data.push(document.forms["businessForm"]["address"].value); 	// 6
+		data.push(document.forms["businessForm"]["address2"].value); 	// 7
+		data.push(document.forms["businessForm"]["industry"].value); 	// 8
+		data.push(document.forms["businessForm"]["bio"].value); 		// 9
+	}
+	else console.log("INVALID");
 };
 
 function store_student_info() {
-	var data = [];
-	data.push(document.forms["studentForm"]["fName"].value); 		// 0
-	data.push(document.forms["studentForm"]["lName"].value); 		// 1
-	data.push(document.forms["studentForm"]["email"].value); 		// 2
-	data.push(document.forms["studentForm"]["pass"].value); 		// 3
-	data.push(document.forms["studentForm"]["confirmPass"].value); 	// 4
-	data.push(document.forms["studentForm"]["college"].value); 		// 5
-	data.push(document.forms["studentForm"]["year"].value); 		// 6
-	data.push(document.forms["studentForm"]["course"].value); 		// 7
-	console.log(data);
+	if (validity) {
+		console.log(data);
+		var data = [];
+		data.push(document.forms["studentForm"]["fName"].value); 		// 0
+		data.push(document.forms["studentForm"]["lName"].value); 		// 1
+		data.push(document.forms["studentForm"]["email"].value); 		// 2
+		data.push(document.forms["studentForm"]["pass"].value); 		// 3
+		data.push(document.forms["studentForm"]["confirmPass"].value); 	// 4
+		data.push(document.forms["studentForm"]["college"].value); 		// 5
+		data.push(document.forms["studentForm"]["year"].value); 		// 6
+		data.push(document.forms["studentForm"]["course"].value); 		// 7
+	}
+	else console.log("INVALID");
 };
