@@ -3,7 +3,34 @@ body {
 	background-color:#000;
 	overflow: hidden;
 	background-position: absolute;
-	max-height: 70%;
+	width: 100%;
+	height: 100%;
+}
+
+ul {
+	font-family: Arial;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: black;
+}
+
+li {
+	display: inline;
+
+}
+
+li a {
+    color: white;
+    display: inline;
+    text-decoration: none;
+}
+
+/* Change the link color on hover */
+li a:hover {
+    background-color: #555;
+    color: white;
 }
 
 div.fieldset {
@@ -11,6 +38,7 @@ div.fieldset {
 	width: 600px;
 	height: 400px;
 	overflow: auto;
+	overflow-x: hidden;
 	color:#00cc99;
 	background-color: black;
 	position:relative;
@@ -76,6 +104,7 @@ input {
 	margin: 0 0 10px 250px;
 	border: outset white medium;
 	max-width: 15%;
+	margin-right: 50%;
 
 }
 
