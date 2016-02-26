@@ -7,29 +7,13 @@ body {
 	height: 100%;
 }
 
-ul {
-	font-family: Arial;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    background-color: black;
-}
-
-li {
-	display: inline;
-
-}
-
-li a {
-    color: white;
-    display: inline;
-    text-decoration: none;
+a {
+	background-color: black;
 }
 
 /* Change the link color on hover */
-li a:hover {
-    background-color: #555;
+a:hover {
+    background-color: black;
     color: white;
 }
 
@@ -63,7 +47,7 @@ h1 {
 	text-align: center;
 	
 	left: 50%;
-	margin-top:35px;
+	margin-top:6%;
 }
 
 label {
