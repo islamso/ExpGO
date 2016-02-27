@@ -12,7 +12,6 @@
     if (! get_magic_quotes_gpc())
     {
         $first_name = addslashes($_POST['fName']);
-        echo "boo";
         $last_name = addslashes($_POST['lName']);
         $email = addslashes($_POST['email']);
         $password = addslashes($_POST['pass']);
@@ -23,7 +22,6 @@
     else
     {
         $first_name = $_POST['fName'];
-        echo "bbo2";
         $last_name = $_POST['lName'];
         $email = $_POST['email'];
         $password = $_POST['pass'];
