@@ -42,11 +42,15 @@
     	$conn->exec($sql);
     	echo "New record created successfully";
         // SUCCESSFUL: redirect them to profile
-        header('Location: http://expgo.gq/business_profile.html/');
+        
     }
 	catch(PDOException $e)
     {
     	echo $sql . "<br>" . $e->getMessage();
 	}
-	$conn = null;
+	//$conn = null;
+    session_register($username);
+    session_register($password);
+    header('Location: http://expgo.gq/business_profile.html/');
+    
 ?>
