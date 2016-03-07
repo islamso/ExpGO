@@ -26,6 +26,8 @@ $(document).ready(function() {
 		formValid["bioField"] = true;
 	} else if (this.title === "Student Sign Up") {
 		currentForm = document.forms["studentForm"];
+		formValid["collegeField"] = true;
+		formValid["yearField"] = true;
 	}
 	var formFields = [];
 	for (var i = 1; i < currentForm.length - 1; i++) {
@@ -33,6 +35,7 @@ $(document).ready(function() {
 		formFields.push(idName);
 		if (!formValid[idName]) formValid[idName] = false;
 	}
+	console.log(formFields);
 
 	document.addEventListener("keydown", keyCheck);
 	function keyCheck(event) {
@@ -40,22 +43,27 @@ $(document).ready(function() {
 			keyPressed = 8;
 			switch (eventClickedId) {
 				case "passField":
-					$.proxy(passFieldCheck, this)();
+					formValid[eventClickedId] = $.proxy(passFieldCheck, this)();
 					break;
 				case "confirmPassField":
-					$.proxy(confirmPassFieldCheck, this)();
+					formValid[eventClickedId] = $.proxy(confirmPassFieldCheck, this)();
 					break;
 				case "emailField":
-					$.proxy(emailFieldCheck, this)();
+					formValid[eventClickedId] = $.proxy(emailFieldCheck, this)();
 					break;
 				case "phoneField":
-					$.proxy(phoneFieldCheck, this)();
+					formValid[eventClickedId] = $.proxy(phoneFieldCheck, this)();
 					break;
 				case "cNameField":
 				case "adminField":
 				case "addressField":
 				case "courseField":
-					$.proxy(blankCheck, this)();
+				case "fnameField":
+				case "lNameField":
+				case "collegeField":
+				case "yearField":
+				case "courseField":
+					formValid[eventClickedId] = $.proxy(blankCheck, this)();
 					break;
 				default:
 					break;
@@ -79,46 +87,56 @@ $(document).ready(function() {
 
 	$("#passField").keypress(function() {
 		keyPressed = event.keyCode;
-		$.proxy(passFieldCheck, this)();
+		formValid[eventClickedId] = $.proxy(passFieldCheck, this)();
 	});
 
 	$("#confirmPassField").keypress(function() {
 		keyPressed = event.keyCode;
-		$.proxy(confirmPassFieldCheck, this)();
+		formValid[eventClickedId] = $.proxy(confirmPassFieldCheck, this)();
 	});
 
 	$("#emailField").keypress(function() {
 		keyPressed = event.keyCode;
-		$.proxy(emailFieldCheck, this)();
+		formValid[eventClickedId] = $.proxy(emailFieldCheck, this)();
 	});
 
 	$("#phoneField").keypress(function() {
 		keyPressed = event.keyCode;
-		$.proxy(phoneFieldCheck, this)();
+		formValid[eventClickedId] = $.proxy(phoneFieldCheck, this)();
 	});
 
 	$("#cNameField").keypress(function() {
 		keyPressed = event.keyCode;
-		$.proxy(blankCheck, this)();
+		formValid[eventClickedId] = $.proxy(blankCheck, this)();
 	});
 
 	$("#adminField").keypress(function() {
 		keyPressed = event.keyCode;
-		$.proxy(blankCheck, this)();
+		formValid[eventClickedId] = $.proxy(blankCheck, this)();
 	});
 
 	$("#addressField").keypress(function() {
 		keyPressed = event.keyCode;
-		$.proxy(blankCheck, this)();
+		formValid[eventClickedId] = $.proxy(blankCheck, this)();
 	});
 
 	$("#courseField").keypress(function() {
 		keyPressed = event.keyCode;
-		$.proxy(blankCheck, this)();
+		formValid[eventClickedId] = $.proxy(blankCheck, this)();
 	});
 
-	$("#Submitutton").click(function() {
-		for (var i = 0; i < formFields; i++) {
+	$("#fnameField").keypress(function() {
+		keyPressed = event.keyCode;
+		formValid[eventClickedId] = $.proxy(blankCheck, this)();
+	});
+
+	$("#lNameField").keypress(function() {
+		keyPressed = event.keyCode;
+		formValid[eventClickedId] = $.proxy(blankCheck, this)();
+	});
+
+	$("#Submitbutton").click(function() {
+		for (var i = 0; i < formFields.length; i++) {
 			if (!formValid[formFields[i]]) {
 				validity = false;
 				return;
@@ -133,8 +151,10 @@ $(document).ready(function() {
 		if (fieldVal === "") {
 			$("#" + eventClickedId).after("<div id=\"" + eventClickedId + "DivErr\">" + ERROR_MSG_6 + "</div>");
 			displayErrorField();
+			return false;
 		} else {
 			displayValidField();
+			return true;
 		}
 	};
 	
@@ -144,12 +164,14 @@ $(document).ready(function() {
 		if (emailVal === "") {
 			$("#" + eventClickedId).after("<div id=\"emailErrDiv\">" + ERROR_MSG_6 + "</div>");
 			displayErrorField();
-			return;
+			return false;
 		} else if (emailVal.indexOf('@') === -1 || emailVal.indexOf('.') === -1 ) {
 			$("#" + eventClickedId).after("<div id=\"emailErrDiv\">" + ERROR_MSG_4 + "</div>");
 			displayErrorField();
+			return false;
 		} else {
 			displayValidField();
+			return true;
 		}
 	};
 
@@ -159,12 +181,14 @@ $(document).ready(function() {
 		if (phoneVal === "") {
 			$("#" + eventClickedId).after("<div id=\"phoneErrDiv\">" + ERROR_MSG_6 + "</div>");
 			displayErrorField();
-			return;
+			return false;
 		} else if (isNaN(phoneVal.split(' ').join(''))) {
 			$("#" + eventClickedId).after("<div id=\"phoneErrDiv\">" + ERROR_MSG_5 + "</div>");
 			displayErrorField();
+			return false;
 		} else {
 			displayValidField();
+			return true;
 		}
 	}
 
@@ -175,20 +199,22 @@ $(document).ready(function() {
 		if (passVal === "") {
 			$("#" + eventClickedId).after("<div id=\"passErrDiv\">" + ERROR_MSG_6 + "</div>");
 			displayErrorField();
-			return;
+			return false;
 		}
 		for (var i = 0; i < INVALID_PASS_CHAR.length; i++) {
 			if (passVal.indexOf(INVALID_PASS_CHAR[i * 2]) > -1 ) {
 				$("#" + eventClickedId).after("<div id=\"passErrDiv\">" + ERROR_MSG_2 + "</div>");
 				displayErrorField();
-				return;
+				return false;
 			}
 		}
 		if (passLength <= 5) {
 			displayErrorField();
 			$("#" + eventClickedId).after("<div id=\"passErrDiv\">" + ERROR_MSG_1 + "</div>");
+			return false;
 		} else {
 			displayValidField();
+			return true;
 		}
 	};
 
@@ -199,12 +225,14 @@ $(document).ready(function() {
 		if (confirmPassVal === "") {
 			$("#" + eventClickedId).after("<div id=\"confErrDiv\">" + ERROR_MSG_6 + "</div>");
 			displayErrorField();
-			return;
+			return false;
 		} else if (passVal !== confirmPassVal) {
 			displayErrorField();
 			$("#" + eventClickedId).after("<div id=\"confErrDiv\">" + ERROR_MSG_3 + "</div>");
+			return false;
 		} else {
 			displayValidField();
+			return true;
 		}
 	};
 
@@ -231,7 +259,6 @@ $(document).ready(function() {
 
 function store_business_info() {
 	if (validity) {
-		console.log(data);
 		var data = [];
 		data.push(document.forms["businessForm"]["cName"].value); 		// 0
 		data.push(document.forms["businessForm"]["email"].value); 		// 1
@@ -243,13 +270,13 @@ function store_business_info() {
 		data.push(document.forms["businessForm"]["address2"].value); 	// 7
 		data.push(document.forms["businessForm"]["industry"].value); 	// 8
 		data.push(document.forms["businessForm"]["bio"].value); 		// 9
+		console.log(data);
 	}
 	else console.log("INVALID");
 };
 
 function store_student_info() {
 	if (validity) {
-		console.log(data);
 		var data = [];
 		data.push(document.forms["studentForm"]["fName"].value); 		// 0
 		data.push(document.forms["studentForm"]["lName"].value); 		// 1
@@ -259,6 +286,7 @@ function store_student_info() {
 		data.push(document.forms["studentForm"]["college"].value); 		// 5
 		data.push(document.forms["studentForm"]["year"].value); 		// 6
 		data.push(document.forms["studentForm"]["course"].value); 		// 7
+		console.log(data);
 	}
 	else console.log("INVALID");
 };
