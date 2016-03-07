@@ -165,7 +165,7 @@ $(document).ready(function() {
 			$("#" + eventClickedId).after("<div id=\"emailErrDiv\">" + ERROR_MSG_6 + "</div>");
 			displayErrorField();
 			return false;
-		} else if (emailVal.indexOf('@') === -1 || emailVal.indexOf('.') === -1 ) {
+		} else if (emailVal.indexOf('@') === -1 || emailVal.indexOf('.') === -1 || emailVal.indexOf('.') === emailVal.length - 1) {
 			$("#" + eventClickedId).after("<div id=\"emailErrDiv\">" + ERROR_MSG_4 + "</div>");
 			displayErrorField();
 			return false;
