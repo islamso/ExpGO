@@ -45,5 +45,5 @@
 	//$conn = null;
     session_register($username);
     session_register($password);
-    header('Location: http://expgo.gq/student_profile.html/');
+    header('Location: http://expgo.gq/student_profile.html');
 ?>

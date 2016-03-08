@@ -51,6 +51,6 @@
 	//$conn = null;
     session_register($username);
     session_register($password);
-    header('Location: http://expgo.gq/business_profile.html/');
+    header('Location: http://expgo.gq/business_profile.html');
     
 ?>
