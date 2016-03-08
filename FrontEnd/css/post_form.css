@@ -1,0 +1,87 @@
+
+/* Change the link color on hover */
+a:hover {
+	color: #ff9900;
+}
+
+div.fieldset {
+	overflow: auto;
+	overflow-x: hidden;
+	color:#00cc99;
+	background-color: black;
+	position:relative;
+
+}
+
+fieldset {
+	border: none;
+	margin: 0 0 0 -10px;
+}
+
+h1 {
+	font-family: Arial;
+	color:#00cc99;
+	font-size: 40px;
+	font-shadow: #000 0px 3px;
+	font-weight:bold;
+	width:100%;	
+	text-align: center;
+}
+
+label {
+	font-family: Arial;
+	font-size: 15px;
+	
+	width: 170px;
+	
+	color:white;
+}
+
+fieldset p {
+	clear:both;
+	padding:5px;
+}
+
+label span, .required {
+	color:#ff9900;
+}
+
+input {
+
+	width: 250px;
+	font-family: Arial;
+	color:black;
+	border-color: #00cc99;
+	/*max-width: 40%;*/
+}
+
+#Submitbutton {
+	width:75px; 
+	font-family: Arial;
+	background-color:black; 
+	color:white; 
+	margin: 0 0 10px 250px;
+	border: outset white medium;
+	max-width: 15%;
+	margin-right: 50%;
+
+}
+
+#drop-down {
+	font-family: Verdana;
+	font-size: 15px;
+	color:black;
+	width:255px;	
+	text-align: center;
+	top:50%;
+	left: 50%;
+	max-width: 40%;
+}
+
+#questions {
+	overflow: auto;
+	overflow-x: hidden;
+	color:#00cc99;
+	background-color: black;
+	position:relative;
+}

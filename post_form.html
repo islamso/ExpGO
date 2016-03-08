@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ExpGO! - Post a Job</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="FrontEnd/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="FrontEnd/css/grayscale.css" rel="stylesheet">
+
+     <link href="FrontEnd/css/post_form.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="FrontEnd/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand page-scroll" href="index.html">Home</a>
+                </div>
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand page-scroll" href="business_profile.html"> Your profile</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                    <ul class="nav navbar-nav">
+                        <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                        <li class="hidden">
+                            <a href="#page-top"></a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#about">Main information</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#questions">Your 3 questions</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+
+        <!-- Intro Header -->
+        <header class="intro">
+            <div class="intro-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <h1 class="brand-heading">Post a Job</h1>
+                            <p class="intro-text">Fill in the required details below and we'll do the rest.</p>
+                            <a href="#about" class="btn btn-circle page-scroll">
+                                <i class="fa fa-angle-double-down animated"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- About Section -->
+        <section id="about" class="container content-section text-center">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <form name="studentForm" method='post' action='BackEnd/signup_stu.php' onsubmit="store_student_info()">
+            <h1>The Details: </h1><br>
+            <div class = "fieldset">
+            <fieldset>
+                
+                
+                <p><label class = "field" for="pos"><span>*</span>Position:</label>
+                    <input type="Text" name="pos" id="posField"/></p>
+                <p><label class = "field" for="desc">Description:</label>
+                    <input type="Text" name="desc" id="descField" /></p>
+                <p><label class = "field" for="pay"><span>*</span>Pay:</label>
+                    <input type="Text" name="pay" id="payField"/></p>
+                <p><label class = "field" for="minReq"><span>*</span>Minimum Requirements:</label>
+                    <input type="Text" name="minReq" id="minReqField" /></p>
+                <p><label class = "field" for="time"><span>*</span>Job Duration:</label>
+                    <input type="Text" name="time" id="timeField"/></p><br><br>
+            </fieldset>
+                <section id="questions">
+                <div class = "question-section">
+                    
+                <h1 style="color:#ff9900;">Ask Three Questions for applicants to answer.</h1>
+            <fieldset>
+                <p><label class = "field" for="q1">Question 1:</label>
+                    <input style="width:70%;" type="Text" name="q1" id="q1Field"/></p> 
+                <p><label class = "field" for="q2">Question 2:</label>
+                    <input style="width:70%;" type="Text" name="q2" id="q2Field"/></p>     
+                <p><label class = "field" for="q3">Question 3:</label>
+                    <input style="width:70%;" type="Text" name="q3" id="q3Field"/></p>      
+            </fieldset>
+                    
+            </div>
+        </section>
+            <input id="Submitbutton" type="Submit" name="Submit" value="Submit">
+            </div>
+        </form>
+                </div>
+            </div>
+        </section>
+
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p>Copyright &copy; Your Website 2014</p>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="FrontEnd/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="FrontEnd/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="FrontEnd/js/jquery.easing.min.js"></script>
+
+    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="FrontEnd/js/grayscale.js"></script>
+
+</body>
+
+</html>
