@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	$('#search').click(function() {
+	$('.content-section').click(function() {
 		$(this).toggle(1000);
 	});
 });
