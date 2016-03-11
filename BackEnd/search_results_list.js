@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+	//stuff
+
 	$('.content-section').click(function() {
 		$(this).find('.container-fluid').toggle(1000);
 	});
