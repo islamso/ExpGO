@@ -1,12 +1,5 @@
 $(document).ready(function() {
-
-	//stuff
-
-	$('.content-section').click(function() {
-		$(this).find('.container-fluid').toggle(1000);
-	});
-
-	$('.panel').click(function() {
-		$(this).parent().find('.panel-body').toggle(500);
+	$('.view-more').click(function() {
+		$(this).parent().find('.list-group-item-text').toggle(500);
 	});
 });
