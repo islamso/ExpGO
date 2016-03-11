@@ -1,7 +1,10 @@
 $(document).ready(function() {
 
 	$('.content-section').click(function() {
-		$(this).toggle(1000);
-		console.log(this);
+		$(this).find('.container-fluid').toggle(1000);
+	});
+
+	$('.panel').click(function() {
+		$(this).parent().find('.panel-body').toggle(500);
 	});
 });
