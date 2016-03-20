@@ -73,14 +73,15 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							<form name="login" method="post" action="BackEnd/checklogin.php">
                                 <li>
                                     <div class="input-group">
-                                      <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+                                      <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" name="uName">
                                   </div>
                               </li>
                               <li>
                                 <div class="input-group">
-                                  <input type="text" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
+                                  <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1" name="uPass">
                               </div>
                           </li>
                           <li>
@@ -92,6 +93,7 @@
                             </div>
                         </div>
                     </li>
+					</form>
                 </ul>
             </div>
 
