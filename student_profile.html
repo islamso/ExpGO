@@ -1,3 +1,14 @@
+<?php
+session_start();
+if(!session_is_registered(username)){
+    $_SESSION["firstName"] = 'John';
+    $_SESSION["lastName"] = 'Smith';
+    $_SESSION["univ"] = 'Trinity College Dublin';
+    $_SESSION["year"] = 'Junior Freshman';
+    $_SESSION["course"] = 'Law';
+    $_SESSION["bio"] = 'This is how your profile page would look!';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,13 +23,13 @@
     <title>ExpGO! - My Profile</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="FrontEnd/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../FrontEnd/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="FrontEnd/css/grayscale.css" rel="stylesheet">
+    <link href="../FrontEnd/css/grayscale.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="FrontEnd/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../FrontEnd/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 
@@ -53,13 +64,13 @@
                             <a href="#page-top"></a>
                         </li>
                         <li>
-                            <a class="page-scroll" href="#about">My Applications</a>
+                            <a class="page-scroll" href="#my_apps">My Applications</a>
                         </li>
                         <li>
-                            <a class="page-scroll" href="#download">Search</a>
+                            <a class="page-scroll" href="#search">Search</a>
                         </li>
                         <li>
-                            <a class="page-scroll" href="#contact">Sign Out</a>
+                            <a class="page-scroll" href="BackEnd/logout.php">Sign Out</a>
                         </li>
                     </ul>
                 </div>
@@ -74,16 +85,15 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">
-
-
                             <div class="jumbotron">
                                 <font color="red">
-                                    <h1>Sofwat Islam</h1>
-                                    <p>islamso@tcd.ie</p>
-                                    <p>Trinity College Dublin</p>
-                                    <p>Computer Science & Business</p>
-                                    <p>Junior Sophister</p>
-                                    <p>I am very boring</p>
+                                <?php
+                                    echo"<h1>". $_SESSION["firstName"] ." ". $_SESSION["lastName"]. "</h1>";
+                                    echo"<p>".$_SESSION["univ"]."</p>";
+                                    echo"<p>".$_SESSION["course"]."</p>";
+                                    echo"<p>".$_SESSION["year"]."</p>";
+                                    echo"<p>".$_SESSION["bio"]."</p>";
+                                ?>
                                 </font>
                             </div>
                         </div>
@@ -153,13 +163,13 @@
 </footer>
 
 <!-- jQuery -->
-<script src="FrontEnd/js/jquery.js"></script>
+<script src="../FrontEnd/js/jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="FrontEnd/js/bootstrap.min.js"></script>
+<script src="../FrontEnd/js/bootstrap.min.js"></script>
 
 <!-- Plugin JavaScript -->
-<script src="FrontEnd/js/jquery.easing.min.js"></script>
+<script src="../FrontEnd/js/jquery.easing.min.js"></script>
 
 <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
