@@ -50,7 +50,19 @@
 	}
 	//$conn = null;
     session_register($username);
+	$_SESSION["username"] = $username;
     session_register($password);
+	$_SESSION["name"] = $company_name;
+	session_register($name);
+	$_SESSION["address"] = $address1;
+	session_register($address);
+	$_SESSION["industry"] = $industry;
+	session_register($industry);
+	$_SESSION["phone"] = $phone;
+	session_register($phone);
+	$_SESSION["bio"] = $bio;
+	session_register($bio);
+	
     header('Location: http://expgo.gq/business_profile.html');
     
 ?>

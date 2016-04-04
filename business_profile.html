@@ -1,3 +1,15 @@
+<?php
+session_start();
+if(!session_is_registered(username)){
+    $_SESSION["name"] = "Google";
+    $_SESSION["address"] = 'Google Ireland Ltd., Gordon House, Barrow St., Dublin 4, Ireland';
+    $_SESSION["industry"] = 'Internet ; Computer Software';
+    $_SESSION["phone"] = '01 436 1001';
+    $_SESSION["bio"] = 'Google is an American multinational technology company specializing in Internet-related services and products. 
+	These include online advertising technologies, search, cloud computing, and software.';
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,7 +71,7 @@
                             <a class="page-scroll" href="#download">New Post</a>
                         </li>
                         <li>
-                            <a class="page-scroll" href="#contact">Sign Out</a>
+                            <a class="page-scroll" href="../index.html">Sign Out</a>
                         </li>
                     </ul>
                 </div>
@@ -78,14 +90,14 @@
 
                                 <div class="jumbotron">
                                     <font color="red">
-                                        <h1>Trinity College Dublin</h1>
-                                        <p>College Green, Dublin 2</p>
-                                        <p>E-Learning</p>
-                                        <p>(01) 896 1000</p>
-                                        <p>Trinity ranked in top 25
-                                            <br>
-                                            Oldest universities Globally</p>
-                                        </font>
+									<?php
+                                        echo"<h1>". $_SESSION["name"]."</h1>";
+                                        echo"<p>". $_SESSION["address"]."</p>";
+                                        echo"<p>". $_SESSION["industry"]."</p>";
+                                        echo"<p>". $_SESSION["phone"]."</p>";
+                                        echo"<p>". $_SESSION["bio"]."</p>";
+										?>
+                                     </font>
                                     </div>
                                 </div>
 
